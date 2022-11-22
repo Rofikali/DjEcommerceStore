@@ -1,0 +1,28 @@
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{{ data.image.image.url }}" class="img-thumbnail" alt="Thumbnail">
+            <div class="card-body">
+              <p class="card-text">Content - {{ data.content | truncatewords:10 }}.</p>
+              <div class="d-flex justify-content-between align-datas-center">
+                {% if not request.user.is_authenticated %}
+                {% comment %} i mean same user {% endcomment %}
+                <div class="btn-group">
+                  <a class="btn btn-sm btn-outline-secondary" href="{{ item.get_absolute_url }}">Update</a>
+                </div>
+                <div class="btn-group">
+                  <a class="btn btn-sm btn-outline-secondary" href="{{ item.get_absolute_url }}">Delete</a>
+                </div>
+                {% else %}
+                <small class="text-muted">{{ data.created_at | timesince }} ago</small>
+                {% endif %}
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
